@@ -38,10 +38,10 @@ const Form = () => {
             Add Item    
             </button>
             <button
-            onClick={()=>{dispatch({type:'CLEAR_TODO'}) 
+            onClick={()=>{dispatch({type:'CLEAR_COMPLETED'}) 
             }}
             >
-            Clear Items   
+            Clear Completed  
             </button> 
         </div>
     </div>   

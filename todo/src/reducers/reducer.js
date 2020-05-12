@@ -15,9 +15,9 @@ export const reducer = (state, action) => {
                 ...state,
                 completed: !state.completed
             }
-        case "CLEAR_TODO":
+        case "CLEAR_COMPLETED":
             return{
-                initialState
+                ...state.includes(false)
             }
         default:
             return state;
