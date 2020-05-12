@@ -8,11 +8,20 @@ const Form = () => {
     const handleChanges = e => {
         setTodoText(e.target.value)
     }
-
+    console.log(state)
     return (
     <div>
         <div>
-           {state.map} 
+           {state.map(item => (
+              <div key={item.id} className='todoListDiv'>
+                <h3
+                onClick={()=>dispatch({ type: 'TOGGLE_COMPLETED'})}
+                className = {state.completed ? 'toggleTrue' : 'toggleFalse'}
+                >{item.item}</h3>
+                
+              </div>
+
+           ))} 
         </div>
         <div>
            <input
@@ -27,6 +36,12 @@ const Form = () => {
             }}
             >
             Add Item    
+            </button>
+            <button
+            onClick={()=>{dispatch({type:'CLEAR_TODO'}) 
+            }}
+            >
+            Clear Items   
             </button> 
         </div>
     </div>   
