@@ -1,20 +1,38 @@
 
 
 export const reducer = (state, action) => {
+    console.log(action)
     switch (action.type){
         case "ADD_TODO":
-            return {
-                ...state.push({
-                item: action.payload,
-                completed: false,
-                id:new Date()
-                })   
+           return [...state ,
+            {
+                item:action.payload.todoText,
+                completed:false,
+                id:Date.now()
             }
+        ]
+           
+            
         case "TOGGLE_COMPLETED":
-            return{
-                ...state,
-                completed: !state.completed
-            }
+            // return {
+            //     item: state.map((i,id)=>{
+            //         id === action.id ? { ...i , completed: !i.completed}:i
+            //     })
+            // }
+            const mapArr = state.map(item =>{
+                if (item.id === action.payload){
+                    return {
+                        ...item,
+                        completed: !state.completed
+                    }
+                  
+                }
+              
+            })
+
+            return mapArr
+           
+            
         case "CLEAR_COMPLETED":
             return{
                 ...state.includes(false)
