@@ -1,6 +1,6 @@
 
 
-export const reducer = (state, action) => {
+export const reducer = (state=initialState, action) => {
     console.log(action)
     switch (action.type){
         case "ADD_TODO":
@@ -14,11 +14,7 @@ export const reducer = (state, action) => {
            
             
         case "TOGGLE_COMPLETED":
-            // return {
-            //     item: state.map((i,id)=>{
-            //         id === action.id ? { ...i , completed: !i.completed}:i
-            //     })
-            // }
+
             const mapArr = state.map(item =>{
                 if (item.id === action.payload){
                     return {
@@ -26,7 +22,7 @@ export const reducer = (state, action) => {
                         completed: !state.completed
                     }
                   
-                }
+                } else return item
               
             })
 
@@ -34,9 +30,11 @@ export const reducer = (state, action) => {
            
             
         case "CLEAR_COMPLETED":
-            return{
-                ...state.includes(false)
-            }
+            const incTodo = state.filter((item)=>{
+                return item.completed === false
+            })
+            return incTodo
+            
         default:
             return state;
     }
